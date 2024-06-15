@@ -1,0 +1,52 @@
+<!-- Create a signup form which will take user inputs stored in json obj. 
+
+Create a login page if the user sign up from the same email and pass then authenticate the user. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sign up page</title>
+</head>
+
+<body>
+  <form action="./users.json" method="post" novalidate autocomplete="off" id="signUp-form">
+    <div class="fname">
+      <label for="fname">first name:
+        <input type="text" name="fname" id="fname">
+      </label>
+    </div>
+    <!-- last name -->
+    <div class="lname">
+      <label for="lname">last name:
+        <input type="text" name="lname" id="lname">
+      </label>
+    </div>
+    <!-- email -->
+    <div class="email">
+      <label for="email">email:
+        <input type="email" name="email" id="email">
+      </label>
+    </div>
+    <!-- password -->
+    <div class="password">
+      <label for="password">password:
+        <input type="password" name="password" id="password">
+      </label>
+    </div>
+    <!-- age -->
+    <div class="age">
+      <label for="age">date of birth:
+        <input type="date" name="age" id="age">
+      </label>
+    </div>
+    <div class="submit">
+      <input type="submit" value="submit" id="submit">
+    </div>
+  </form>
+<script src='signup.js' defer></script>
+</body>
+
+</html>
