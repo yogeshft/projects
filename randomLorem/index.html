@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>random lorem generator</title>
+</head>
+
+<body>
+  <form id="form">
+    <div>
+      <label for="paragraphCount">
+        total paragraph count
+        <input type="range" name="paragraphs" id="paragraphCount" min="0" max="10">
+      </label>
+      <p id="paragraphCountValue"></p>
+    </div>
+    <div>
+      <label for="wordCount">
+        total word count
+        <input type="range" name="words" id="wordCount" min="0" max="10">
+      </label>
+      <p id="wordCountValue"></p>
+
+    </div>
+    <div>
+      <input type="submit" value="submit" id="submit">
+    </div>
+  </form>
+  <div id="result"></div>
+  <script src='script.js'></script>
+</body>
+
+</html>
