@@ -21,3 +21,46 @@ function createCard(array, container) {
      
   `;
 }
+
+function generatePagination(pageCount, container) {
+  let paginationHTML = `
+    <ul id="pagination__pages--list" class="pagination__pages--list">
+      <li id="previousBtn">Previous</li>
+  `;
+  for (let i = 0; i < pageCount; i++) {
+    paginationHTML += `
+      <li class="pagination__pages--item" id="page${i + 1}" data-value="${
+      i + 1
+    }">${i + 1}</li>
+    `;
+  }
+  paginationHTML += `
+      <li id="nextBtn">Next</li>
+    </ul>
+  `;
+  container.innerHTML = paginationHTML;
+}
+
+function totalPages(totalLimit, arrayLength) {
+  return Math.ceil(arrayLength / totalLimit);
+}
+
+function addActiveClass(element) {
+  element.classList.add("active");
+}
+
+function handlePreviousItem(pageNumber) {
+  if (pageNumber >= 1) {
+    return pageNumber - 1;
+  } else {
+    return false;
+  }
+}
+
+function handleNextItem(pageNumber, totalPageCount) {
+  if (pageNumber <= totalPageCount) {
+    return pageNumber + 1;
+  } else {
+    return false;
+  }
+}

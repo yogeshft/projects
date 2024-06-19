@@ -1,11 +1,12 @@
 /*
-  1. find out total array elements
-  2. total limits to show per page
-  3. divide total/limit to get page count and render it on ui
+  // 1. find out total array elements
+  // 2. total limits to show per page
+  // 3. divide total/limit to get page count and render it on ui
   4. initially page number should be 1
   5. add next prev btns and add logic of ++ and --
   6. generateCard(pageNumber,totalArray,limit) => it will return cards based on page number
   7. on every page change generateCard function will be called
+  8. using Math.ceil(num1) we can get the exact page count
 */
 // const array = Array.from({ length: 50 }, (v, k) => k + 1);
 // const limit = 2;
@@ -62,4 +63,4 @@ for (let i = 1; i < pageNumber; i++) {
 }
 
 const currentPage = paginator.next().value;
-console.log(currentPage); // Output the items for the current page
+console.log(currentPage); 
