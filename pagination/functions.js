@@ -79,61 +79,39 @@ function paginate(array, pageNumber, pageSize) {
   return array.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize);
 }
 
-function activatePageNumber(pageNumber) {
-  if (typeof pageNumber == "number") {
-    document.getElementById(`page${pageNumber}`).classList.add("active");
-  } else {
-    return false;
-  }
-}
-
-function handlePaginationClick(e) {
-  let currentListItem = e.target;
-  if (
-    currentListItem.tagName === "LI" ||
-    currentListItem.id === "previousBtn" ||
-    currentListItem.id === "nextBtn"
-  ) {
-    // handle previous click event
-    if (currentListItem.id === "previousBtn") {
-      currentPageNumber = handlePreviousItem(pageNumber);
-      if (currentPageNumber) {
-        pageNumber = currentPageNumber;
-        renderPage();
-      } else {
-        return false;
-      }
-
-      // handle next click event
-    } else if (currentListItem.id === "nextBtn") {
-      currentPageNumber = handleNextItem(pageNumber, pageCount);
-      if (currentPageNumber) {
-        pageNumber = currentPageNumber;
-        renderPage();
-      } else {
-        return false;
-      }
-    } else {
-      if (!currentListItem.classList.contains("active")) {
-        pageNumber = Number(currentListItem.dataset.value);
-        if (pageNumber) {
-          currentPageNumber = pageNumber;
-          renderPage();
-        }
-      }
-    }
-  }
-}
-
 function renderPage() {
   cardsToRender = paginate(data, pageNumber, limitPerPage);
   createCard(cardsToRender, paginationContainer);
-  activatePageNumber(currentPageNumber);
+  activatePageNumber(pageNumber);
 }
+
 
 function activatePageNumber(pageNumber) {
   document
     .querySelectorAll(".pagination__pages--item.active")
     .forEach((item) => item.classList.remove("active"));
   document.getElementById(`page${pageNumber}`).classList.add("active");
+}
+
+function handlePaginationClick(e) {
+  const currentListItem = e.target;
+  const tagName = currentListItem.tagName;
+  const id = currentListItem.id;
+
+  if (tagName === "LI" || id === "previousBtn" || id === "nextBtn") {
+    let newPageNumber = null;
+
+    if (id === "previousBtn") {
+      newPageNumber = handlePreviousItem(pageNumber);
+    } else if (id === "nextBtn") {
+      newPageNumber = handleNextItem(pageNumber, pageCount);
+    } else if (!currentListItem.classList.contains("active")) {
+      newPageNumber = Number(currentListItem.dataset.value);
+    }
+
+    if (newPageNumber !== null && newPageNumber !== pageNumber) {
+      pageNumber = newPageNumber;
+      renderPage();
+    }
+  }
 }
