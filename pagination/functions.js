@@ -99,7 +99,7 @@ function handlePaginationClick(e) {
       currentPageNumber = handlePreviousItem(pageNumber);
       if (currentPageNumber) {
         pageNumber = currentPageNumber;
-        renderPage()
+        renderPage();
       } else {
         return false;
       }
@@ -109,7 +109,7 @@ function handlePaginationClick(e) {
       currentPageNumber = handleNextItem(pageNumber, pageCount);
       if (currentPageNumber) {
         pageNumber = currentPageNumber;
-        renderPage()
+        renderPage();
       } else {
         return false;
       }
@@ -126,14 +126,14 @@ function handlePaginationClick(e) {
 }
 
 function renderPage() {
-  deActivateLiItems();
   cardsToRender = paginate(data, pageNumber, limitPerPage);
   createCard(cardsToRender, paginationContainer);
   activatePageNumber(currentPageNumber);
 }
 
-
-// function activatePageNumber(pageNumber) {
-//   document.querySelectorAll(".pagination__pages--item.active").forEach(item => item.classList.remove("active"));
-//   document.getElementById(`page${pageNumber}`).classList.add("active");
-// }
+function activatePageNumber(pageNumber) {
+  document
+    .querySelectorAll(".pagination__pages--item.active")
+    .forEach((item) => item.classList.remove("active"));
+  document.getElementById(`page${pageNumber}`).classList.add("active");
+}
