@@ -1,4 +1,5 @@
 function createCard(array, container) {
+  container.innerHTML = "";
   container.innerHTML += `
       ${array
         .map(
@@ -50,7 +51,7 @@ function addActiveClass(element) {
 }
 
 function handlePreviousItem(pageNumber) {
-  if (pageNumber >= 1) {
+  if (pageNumber > 1) {
     return pageNumber - 1;
   } else {
     return false;
@@ -58,9 +59,22 @@ function handlePreviousItem(pageNumber) {
 }
 
 function handleNextItem(pageNumber, totalPageCount) {
-  if (pageNumber <= totalPageCount) {
+  if (pageNumber < totalPageCount) {
     return pageNumber + 1;
   } else {
     return false;
   }
+}
+
+function deActivateLiItems() {
+  document
+    .querySelectorAll(".pagination__pages--item.active")
+    .forEach((item) => {
+      item.classList.remove("active");
+    });
+}
+
+function paginate(array, pageNumber, pageSize) {
+  --pageNumber;
+  return array.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize);
 }
