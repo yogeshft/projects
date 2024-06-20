@@ -17,6 +17,6 @@ const generateDummyData = (num) => {
   return data;
 };
 
-const data = generateDummyData(17);
+const data = generateDummyData(100);
 
-console.log(data);
+

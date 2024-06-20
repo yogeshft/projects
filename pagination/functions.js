@@ -78,3 +78,11 @@ function paginate(array, pageNumber, pageSize) {
   --pageNumber;
   return array.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize);
 }
+
+function activatePageNumber(pageNumber) {
+  if (typeof pageNumber == "number") {
+    document.getElementById(`page${pageNumber}`).classList.add("active");
+  } else {
+    return false;
+  }
+}
