@@ -82,9 +82,8 @@ function paginate(array, pageNumber, pageSize) {
 function renderPage() {
   cardsToRender = paginate(data, pageNumber, limitPerPage);
   createCard(cardsToRender, paginationContainer);
-  activatePageNumber(pageNumber);
+  activatePageNumber(currentPageNumber);
 }
-
 
 function activatePageNumber(pageNumber) {
   document
@@ -94,24 +93,39 @@ function activatePageNumber(pageNumber) {
 }
 
 function handlePaginationClick(e) {
-  const currentListItem = e.target;
-  const tagName = currentListItem.tagName;
-  const id = currentListItem.id;
+  let currentListItem = e.target;
+  if (
+    currentListItem.tagName === "LI" ||
+    currentListItem.id === "previousBtn" ||
+    currentListItem.id === "nextBtn"
+  ) {
+    // handle previous click event
+    if (currentListItem.id === "previousBtn") {
+      currentPageNumber = handlePreviousItem(pageNumber);
+      if (currentPageNumber) {
+        pageNumber = currentPageNumber;
+        renderPage();
+      } else {
+        return false;
+      }
 
-  if (tagName === "LI" || id === "previousBtn" || id === "nextBtn") {
-    let newPageNumber = null;
-
-    if (id === "previousBtn") {
-      newPageNumber = handlePreviousItem(pageNumber);
-    } else if (id === "nextBtn") {
-      newPageNumber = handleNextItem(pageNumber, pageCount);
-    } else if (!currentListItem.classList.contains("active")) {
-      newPageNumber = Number(currentListItem.dataset.value);
-    }
-
-    if (newPageNumber !== null && newPageNumber !== pageNumber) {
-      pageNumber = newPageNumber;
-      renderPage();
+      // handle next click event
+    } else if (currentListItem.id === "nextBtn") {
+      currentPageNumber = handleNextItem(pageNumber, pageCount);
+      if (currentPageNumber) {
+        pageNumber = currentPageNumber;
+        renderPage();
+      } else {
+        return false;
+      }
+    } else {
+      if (!currentListItem.classList.contains("active")) {
+        pageNumber = Number(currentListItem.dataset.value);
+        if (pageNumber) {
+          currentPageNumber = pageNumber;
+          renderPage();
+        }
+      }
     }
   }
 }
