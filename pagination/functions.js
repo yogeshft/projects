@@ -86,3 +86,54 @@ function activatePageNumber(pageNumber) {
     return false;
   }
 }
+
+function handlePaginationClick(e) {
+  let currentListItem = e.target;
+  if (
+    currentListItem.tagName === "LI" ||
+    currentListItem.id === "previousBtn" ||
+    currentListItem.id === "nextBtn"
+  ) {
+    // handle previous click event
+    if (currentListItem.id === "previousBtn") {
+      currentPageNumber = handlePreviousItem(pageNumber);
+      if (currentPageNumber) {
+        pageNumber = currentPageNumber;
+        renderPage()
+      } else {
+        return false;
+      }
+
+      // handle next click event
+    } else if (currentListItem.id === "nextBtn") {
+      currentPageNumber = handleNextItem(pageNumber, pageCount);
+      if (currentPageNumber) {
+        pageNumber = currentPageNumber;
+        renderPage()
+      } else {
+        return false;
+      }
+    } else {
+      if (!currentListItem.classList.contains("active")) {
+        pageNumber = Number(currentListItem.dataset.value);
+        if (pageNumber) {
+          currentPageNumber = pageNumber;
+          renderPage();
+        }
+      }
+    }
+  }
+}
+
+function renderPage() {
+  deActivateLiItems();
+  cardsToRender = paginate(data, pageNumber, limitPerPage);
+  createCard(cardsToRender, paginationContainer);
+  activatePageNumber(currentPageNumber);
+}
+
+
+// function activatePageNumber(pageNumber) {
+//   document.querySelectorAll(".pagination__pages--item.active").forEach(item => item.classList.remove("active"));
+//   document.getElementById(`page${pageNumber}`).classList.add("active");
+// }
