@@ -24,13 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentListItem.id === "previousBtn") {
         console.log("previous btn triggered");
         currentPageNumber = handlePreviousItem(pageNumber);
-        console.log(currentPageNumber)
+        console.log(currentPageNumber);
       } else if (currentListItem.id === "nextBtn") {
         console.log("next btn triggered");
-        debugger
+        debugger;
         currentPageNumber = handleNextItem(pageNumber, pageCount);
-        console.log(currentPageNumber)
-
+        console.log(currentPageNumber);
       } else {
         if (!currentListItem.classList.contains("active")) {
           document
