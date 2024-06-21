@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: lightgray;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+h1 {
+  color: green;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+input {
+  border: 2px solid darkgreen;
+  outline: none;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 400;
+  border-radius: 10px;
+}
+input:focus {
+  box-shadow: 1px 2px 5px rgba(30, 100, 90, 0.5);
+}
+.btns {
+  display: flex;
+  gap: 0.945rem;
+  justify-content: center;
+  align-items: center;
+}
+.btns button {
+  color: white;
+  background-color: green;
+  border-radius: 1.3rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.result {
+  background-color: darkgreen;
+  color: white;
+  border-radius: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding: 3rem;
+}
+
+.result p {
+  font-size: 1.1rem;
+}
+
+.result h2 {
+  font-size: 1.4rem;
+  color: darkgrey;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: 700;
+}
